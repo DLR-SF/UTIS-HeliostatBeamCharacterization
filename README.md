@@ -1,22 +1,40 @@
 # UTIS-HeliostatBeamCharacterization
-UNet-based Target Image Segmentation
+UNet-Based Target Image Segmentation for Camera Target Method in Solar Tower Plants
 
 ## Overview
 
-This project implements a UNet3+ framework for background separation and flux determination for calibration target images in solar tower plants.
+This project presents a robust implementation of the UNet3+ framework designed for background separation and flux determination in calibration target images used in solar tower plants. The model is trained using artificially generated target images, which are created by combining background images with simulated focal spots. By leveraging these synthetic images with known properties, the UNet model is trained to accurately separate the background from the focal spots, enabling precise flux prediction. For an in-depth explanation and methodology, please refer to [this paper](https://doi.org/10.1016/j.solener.2024.112811).
 
 ## Directory Structure
 
-- `data/` - Contains image data and data loading scripts.
-- `logs/` - Directory to store training logs.
-- `models/` - Directory for model architecture definitions, based on the [UNet3+Model]([URL](https://github.com/Owais-Ansari/Unet3plus)).
-- `predict.py` - Script for running inference with a trained model.
-- `__pycache__/` - Directory for Python cache files.
-- `results.png` - Sample result image from the inference script.
-- `trained_models/` - Directory to store trained model checkpoints.
-- `train.py` - Script for training the UNet3+ model.
-- `unet_pl_module.py` - PyTorch Lightning module for the UNet3+ model.
-- `utils.py` - Utility functions for training and data processing.
+```
+UTIS-HeliostatBeamCharacterization/
+│
+├── data/  # Directory containing image datasets used for training and inference
+│   ├── emptyTargetImages/  # Images of empty targets used for artificial data generation
+│   ├── fluxImages/  # Images representing flux used for artificial data generation
+│   └── realSamples/  # Real images used to test the model's inference capabilities
+│
+├── logs/  # Directory to store training logs
+├── trained_models/  # Directory to store trained model checkpoints
+├── tests/  # Directory for test scripts and inference
+│   ├── predict.py  # Script for running inference with a trained model
+│   └── results.png  # Example output from the inference script
+│
+├── utis/  # Core package directory containing model and utility code
+│   ├── __init__.py  # Makes this directory a Python package
+│   ├── dataset.py  # Script for loading and processing image data
+│   ├── architecture/
+│   │   ├── __init__.py
+│   │   ├── UNet_3Plus_.py  # UNet3+ model architecture
+│   │   └── layers.py  # Additional layers used in the model
+│   ├── unet_pl_module.py  # PyTorch Lightning module for UNet3+
+│   └── train.py  # Script for training the UNet3+ model
+│
+├── setup.py  # Script for installing the package
+├── README.md  # Project description
+└── LICENSE  # License for your package
+```
 
 ## Usage
 
@@ -25,7 +43,7 @@ This project implements a UNet3+ framework for background separation and flux de
 Run the training script:
 
 ```sh
-python train.py
+python -m utis.train
 ```
 
 ### Inference
@@ -33,10 +51,28 @@ python train.py
 Run the inference script:
 
 ```sh
-python predict.py
+python -m tests.predict
 ```
 
-### Results
+## Results
 
-Predicted images and a sample result grid are saved in the specified output directory and as results.png.
+The predicted images and a sample result grid are saved in the specified output directory as `results.png`:
 
+<div align="center">
+  <img src="./tests/results.png" height="250px" hspace="3%" vspace="25px">
+</div>
+
+The result grid is organized as follows:
+- **First row:** Input image
+- **Second row:** Predicted focal spot
+- **Third row:** Predicted background
+
+## Acknowledgments
+This work is supported by the [Helmholtz AI](https://www.helmholtz.ai/) platform grant.
+
+-----------
+<div align="center">
+  <a href="https://www.dlr.de/EN/Home/home_node.html"><img src="./logos/logo_dlr.svg" height="50px" hspace="3%" vspace="25px"></a>
+  <a href="https://www.fz-juelich.de/portal/EN/Home/home_node.html"><img src="./logos/logo_fzj.svg" height="50px" hspace="3%" vspace="25px"></a>
+  <a href="https://www.helmholtz.ai/"><img src="./logos/logo_hai.svg" height="25px" hspace="3%" vspace="25px"></a>
+</div>

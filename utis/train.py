@@ -1,5 +1,5 @@
 import pytorch_lightning as pl
-from data.dataset import get_dataloader_and_reflmap
+from dataset import get_dataloader_and_reflmap
 from unet_pl_module import UNet
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.callbacks import ModelCheckpoint
@@ -9,7 +9,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="Training script for UNet3+")
     
     parser.add_argument('--device', type=str, default='gpu', choices=['cpu', 'gpu'], help='Device to use for training')
-    parser.add_argument('--devices', type=int, nargs='+', default=[0], help='GPU device ids to use (if using GPU)')
+    parser.add_argument('--devices', type=int, nargs='+', default=[1], help='GPU device ids to use (if using GPU)')
     parser.add_argument('--model_name', type=str, default='UNet3plus', help='Name of the model')
     parser.add_argument('--state_dict', type=str, default=None, help='Path to model checkpoint')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training')

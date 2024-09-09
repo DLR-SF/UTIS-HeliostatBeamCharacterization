@@ -3,8 +3,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
-from models.layers import unetConv2
-from models.init_weights import init_weights
+from utis.architecture.layers import unetConv2
+from utis.architecture.init_weights import init_weights
 
 '''
     UNet 3+
@@ -194,8 +194,8 @@ class UNet_3Plus(nn.Module):
             elif isinstance(m, nn.BatchNorm2d):
                 init_weights(m, init_type='kaiming')
                 
-        if torch.cuda.is_available():
-            self.cuda()
+        # if torch.cuda.is_available():
+        #     self.cuda()
 
     def forward(self, inputs):
         ## -------------Encoder-------------

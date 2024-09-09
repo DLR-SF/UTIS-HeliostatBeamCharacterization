@@ -1,6 +1,6 @@
 [![DOI](https://img.shields.io/badge/DOI-10.1016/j.solener.2024.112811-brightgreen)](https://doi.org/10.1016/j.solener.2024.112811)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![PyPI](https://img.shields.io/pypi/v/propulate)
+
 
 # UTIS-HeliostatBeamCharacterization
 UNet-based Target Image Segmentation

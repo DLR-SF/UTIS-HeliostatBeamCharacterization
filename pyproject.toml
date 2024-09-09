@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "UTIS-HeliostatBeamCharacterization"
+version = "0.1.0"
+description = "UNet-based Target Image Segmentation for Solar Tower Calibration"
+authors = ["Mathias Kuhl <mathias.kuhl@dlr.de>"]
+license = "MIT"
+homepage = "https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization"
+repository = "https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization"
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+numpy = ">=1.24.2"
+Pillow = ">=10.4.0"
+pytorch_lightning = ">=2.1.4"
+torch = ">=2.0.0"
+torchvision = ">=0.15.0"
+
+[tool.poetry.scripts]
+train-model = "utis.train:main"
+run-inference = "tests.predict:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.poetry.extras]
+

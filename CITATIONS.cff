@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the following metadata."
+title: "UTIS-HeliostatBeamCharacterization"
+authors:
+  - family-names: "Kuhl"
+    given-names: "Mathias"
+    affiliation: "German Aerospace Center (DLR)"
+  - family-names: "Pargmann"
+    given-names: "Max"
+    affiliation: "German Aerospace Center (DLR)"
+date-released: 2024-09-09
+version: 1.0.0
+doi: 10.1016/j.solener.2024.112811
+url: "https://github.com/username/UTIS-HeliostatBeamCharacterization"
+repository-code: "https://github.com/username/UTIS-HeliostatBeamCharacterization"
+keywords:
+  - UNet
+  - Image Segmentation
+  - Solar Tower Plants
+  - Flux Prediction
+  - Artificial Data Generation
+license: "MIT"

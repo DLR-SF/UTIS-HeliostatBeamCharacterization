@@ -1,5 +1,6 @@
 [![DOI](https://img.shields.io/badge/DOI-10.1016/j.solener.2024.112811-brightgreen)](https://doi.org/10.1016/j.solener.2024.112811)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 
 
 # UTIS-HeliostatBeamCharacterization

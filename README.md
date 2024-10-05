@@ -14,7 +14,7 @@ UNet-Based Target Image Segmentation for Camera Target Method in Solar Tower Pla
 
 ## Overview
 
-This project presents a robust implementation of the UNet3+ framework designed for background separation and flux determination in calibration target images used in solar tower plants. The model is trained using artificially generated target images, which are created by combining background images with simulated focal spots. By leveraging these synthetic images with known properties, the UNet model is trained to accurately separate the background from the focal spots, enabling precise flux prediction. For an in-depth explanation and methodology, please refer to [this paper](https://doi.org/10.1016/j.solener.2024.112811).
+This project presents a robust implementation of the UNet3+ framework designed for background separation and flux determination in calibration target images used in solar tower plants. The model is trained using artificially generated target images, which are created by combining background images with simulated focal spots. By leveraging these synthetic images with known properties, the UNet model is trained to accurately separate the background from the focal spots, enabling precise flux prediction. For an in-depth explanation and methodology, please refer to [this paper](https://doi.org/10.1016/j.solener.2024.112811). The model used to achieve the results in this paper is placed in the [train models](https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization/tree/main/trained_models) folder.
 
 ## Directory Structure
 

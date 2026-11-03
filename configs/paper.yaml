@@ -1,0 +1,39 @@
+# Training setup of the paper (Kuhl et al., Solar Energy 2024): one target,
+# Solar Tower Jülich lower target. Produces models like trained_models/UNet3plus.ckpt.
+#
+#   utis train --config configs/paper.yaml
+name: paper_stj_lower
+seed: 42
+
+data:
+  root: data
+  targets:
+    - name: solar_tower_juelich_lower   # flux set and shift_std default to utis.targets.TARGETS
+  val_fraction: 0.1
+  batch_size: 32
+  num_workers: 8
+
+simulation:
+  train_peak_range: [0.7, 1.1]
+  val_peak_range: [0.8, 1.0]
+  flip_prob: 0.5
+  max_shift: 80
+  blur_kernel_size: 5
+  blur_sigma: 1.0
+  crop_prob: 0.75
+  crop_scale_range: [0.95, 0.99]
+  brightness_range: [0.95, 1.05]
+  zero_flux_prob: 0.0
+
+model:
+  base_channels: 32
+
+optimizer:
+  lr: 2.0e-4
+  weight_decay: 1.0e-8
+
+trainer:
+  max_epochs: 1000
+  accelerator: auto
+  devices: auto
+  output_dir: runs

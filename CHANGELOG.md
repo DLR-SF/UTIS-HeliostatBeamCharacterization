@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 (unreleased)
+## 2.0.0 (2026-11-03)
 
 Complete restructuring of the code base. The published models are unchanged and produce identical results.
 

@@ -1,5 +1,5 @@
 <p align="center">
-<img src="docs/images/logos/UTIS3.svg" alt="UTIS logo" />
+<img src="docs/images/logos/utis_logo.svg" alt="UTIS logo" width="600" />
 </p>
 
 [![DOI](https://img.shields.io/badge/DOI-10.1016/j.solener.2024.112811-brightgreen)](https://doi.org/10.1016/j.solener.2024.112811)

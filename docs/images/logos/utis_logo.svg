@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1443" height="344" viewBox="90 68 1443 344" role="img" aria-labelledby="title desc">
+  <title id="title">UTIS - Heliostat Beam Characterization</title>
+  <desc id="desc">Calibration target with focal spot, UTIS wordmark and U-shaped encoder-decoder motif.</desc>
+  <defs>
+    <radialGradient id="flux" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fffde8"/>
+      <stop offset="0.13" stop-color="#fff7a6"/>
+      <stop offset="0.29" stop-color="#ffd21f"/>
+      <stop offset="0.46" stop-color="#f47721"/>
+      <stop offset="0.65" stop-color="#9d286e"/>
+      <stop offset="0.82" stop-color="#39235f" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#092c4b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="unetBlue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6da9d0"/>
+      <stop offset="1" stop-color="#17618f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Target with flux distribution -->
+  <g transform="translate(110 90)">
+    <rect x="0" y="0" width="300" height="300" fill="#082b4a"/>
+    <circle cx="150" cy="150" r="126" fill="url(#flux)"/>
+    <!-- Target markers -->
+    <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="square">
+      <path d="M27 78 V27 H78"/>
+      <path d="M222 27 H273 V78"/>
+      <path d="M27 222 V273 H78"/>
+      <path d="M273 222 V273 H222"/>
+    </g>
+  </g>
+
+  <!-- Divider -->
+  <path d="M485 88 V392" stroke="#102f4b" stroke-width="5"/>
+
+  <!-- Wordmark -->
+  <text x="550" y="260" fill="#062844" font-family="Arial, Helvetica, sans-serif" font-size="190" font-weight="700" letter-spacing="-8">UTIS</text>
+  <text x="552" y="354" fill="#526477" font-family="Arial, Helvetica, sans-serif" font-size="59" font-weight="400" letter-spacing="0.2">Heliostat Beam Characterization</text>
+
+  <!-- UNet-like encoder/decoder bars -->
+  <g fill="url(#unetBlue)">
+    <rect x="1188" y="90" width="31" height="116" rx="3"/>
+    <rect x="1230" y="119" width="31" height="116" rx="3"/>
+    <rect x="1272" y="153" width="31" height="105" rx="3"/>
+    <rect x="1314" y="268" width="31" height="23" rx="3"/>
+    <rect x="1356" y="268" width="31" height="23" rx="3"/>
+    <rect x="1398" y="153" width="31" height="105" rx="3"/>
+    <rect x="1440" y="119" width="31" height="116" rx="3"/>
+    <rect x="1482" y="90" width="31" height="116" rx="3"/>
+  </g>
+  <path d="M1345 279 H1356 M1387 279 H1398" stroke="#17618f" stroke-width="8" stroke-linecap="square"/>
+</svg>

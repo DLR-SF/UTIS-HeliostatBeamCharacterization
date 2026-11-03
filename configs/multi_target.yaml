@@ -1,0 +1,45 @@
+# Training on all three calibration targets (both Solar Tower Jülich targets and
+# the Multi Focus Tower). Setup of trained_models/utis_model_scripted.pt.
+#
+#   utis train --config configs/multi_target.yaml
+name: multi_target
+seed: 42
+
+data:
+  root: data
+  targets:
+    - name: multi_focus_tower           # flux set: multi_focus_tower, shift_std: 20 px
+      samples_per_epoch: 1000
+    - name: solar_tower_juelich_upper   # flux set: solar_tower_juelich, shift_std: 15 px
+      samples_per_epoch: 1000
+    - name: solar_tower_juelich_lower   # flux set: solar_tower_juelich, shift_std: 15 px
+      samples_per_epoch: 1000
+  val_fraction: 0.1
+  batch_size: 16
+  num_workers: 8
+
+simulation:
+  train_peak_range: [0.7, 1.2]
+  val_peak_range: [0.9, 1.0]
+  flip_prob: 0.5
+  max_shift: 80
+  blur_kernel_size: 5
+  blur_sigma: 1.0
+  crop_prob: 0.75
+  crop_scale_range: [0.95, 0.99]
+  brightness_range: [1.0, 1.0]
+  zero_flux_prob: 0.05        # 5 % empty-target samples without focal spot
+  zero_flux_max_peak: 0.95
+
+model:
+  base_channels: 32
+
+optimizer:
+  lr: 2.0e-4
+  weight_decay: 1.0e-8
+
+trainer:
+  max_epochs: 1000
+  accelerator: auto
+  devices: auto
+  output_dir: runs

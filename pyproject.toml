@@ -4,31 +4,71 @@ build-backend = "hatchling.build"
 
 [project]
 name = "utis"
-version = "0.1.0"
-authors = [
-  { name="Mathias Kuhl", email="mathias.kuhl@dlr.de" },
-]
-description = "UNet-based Target Image Segmentation for Solar Tower Calibration"
+version = "2.0.0"
+description = "UNet-based heliostat beam characterization for precise flux calculation with the camera-target method"
 readme = "README.md"
-requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Mathias Kuhl", email = "mathias.kuhl@dlr.de" },
+  { name = "Max Pargmann" },
+]
+requires-python = ">=3.9"
+keywords = ["concentrated solar power", "heliostat", "flux measurement", "camera-target method", "UNet"]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Development Status :: 1 - Planning",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Image Processing",
 ]
 dependencies = [
-    "numpy",
-    "Pillow",
-    "pytorch-lightning",
-    "torch",
-    "torchvision",
+  "lightning>=2.0",
+  "numpy",
+  "Pillow",
+  "PyYAML",
+  "tensorboard",
+  "torch>=2.0",
+  "torchvision",
 ]
+
+[project.optional-dependencies]
+plot = ["matplotlib"]
+onnx = ["onnx"]
+dev = ["pytest", "ruff", "pre-commit", "matplotlib"]
+
+[project.scripts]
+utis = "utis.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/ARTIST-Association/ARTIST"
+Homepage = "https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization"
 Issues = "https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization/issues"
+Paper = "https://doi.org/10.1016/j.solener.2024.112811"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/utis"]
 
 [tool.pytest.ini_options]
-testpaths = [
-    "tests",
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "N", "D", "ANN", "SIM", "C4", "PIE", "PTH", "RET", "ERA"]
+ignore = [
+  # typing.List/Optional are kept: config dataclass hints are resolved at runtime on Python 3.9.
+  "UP006", "UP007", "UP035", "UP045",
+  "N812",  # `import torch.nn.functional as F`
+  "D102", "D105", "D107",  # methods and overridden hooks are documented in the class docstring where needed
+  "ANN401",
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D", "ANN"]
+"examples/**" = ["D", "ANN"]

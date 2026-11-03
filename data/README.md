@@ -1,36 +1,54 @@
-# Data Directory
+# Data
 
-This directory contains all the datasets and images used for artificial data generation, training the UNet model, and testing the model's inference capabilities.
+Images used to generate synthetic training data and to inspect the model on real measurements.
+All images are rectified and cropped target images of 256 × 256 pixels, recorded at the
+Solar Tower Jülich (STJ) and the Multi Focus Tower (MFT).
 
-## Structure
+Target names follow the [PAINT database](https://paint-database.org/) (`solar_tower_juelich_upper`,
+`solar_tower_juelich_lower`, `multi_focus_tower`). Numeric target ids are deliberately not used, since older DLR
+data sets and PAINT number the targets differently. In the original UTIS data, the directories were
+`emptyTargets6cropped` (STJ upper), `emptyTargets7cropped` (STJ lower) and `emptyTargets4cropped` (MFT).
 
-The `data/` directory is organized into the following subdirectories:
+## License
 
-### 1. `emptyTargetImages/`
-   - **Description:** This folder contains images of empty target areas without any flux. These images serve as the background for generating artificial training data.
-   - **Usage:** These images are combined with the flux images in the `fluxImages/` directory to create synthetic training samples. The UNet model uses these generated samples to learn how to separate the background from the flux.
+The data in this directory are licensed under the
+[Community Data License Agreement – Permissive – Version 2.0](https://cdla.dev/permissive-2-0/)
+(SPDX: `CDLA-Permissive-2.0`), the same license as the PAINT database. The code of this repository is licensed
+under the MIT license (see [`LICENSE`](../LICENSE)).
 
-### 2. `fluxImages/`
-   - **Description:** This folder contains images representing the flux, or the concentrated solar power, typically seen on a target in solar tower plants.
-   - **Usage:** These images are used to overlay the `emptyTargetImages` to simulate real scenarios in the artificial data generation process. The combined images are used for training the UNet model to predict the flux distribution.
+## `empty_targets/<target>/`
 
-### 3. `realSamples/`
-   - **Description:** This folder contains real images of the target with actual flux distributions. These are captured from real-world scenarios in solar tower plants.
-   - **Usage:** These real samples are used to test the inference capabilities of the trained UNet model. The model's ability to accurately predict flux from these real samples validates its effectiveness.
+Images of the empty target without focal spot (8-bit grayscale), taken under a wide range of
+irradiation conditions. They serve as backgrounds `B` of the synthetic images, and their
+pixel-wise mean defines the relative target reflectivity `R` (Eq. 5 of the paper).
 
-## How to Use
-- The image data in this directory is loaded and processed via the `utis.dataset.py` script, which prepares the data for model training and inference. Make sure that the images are correctly organized and accessible for this script to function properly.
+| Target | Images |
+|---|---|
+| `solar_tower_juelich_upper` | 352 |
+| `solar_tower_juelich_lower` | 999 |
+| `multi_focus_tower` | 382 |
 
-## Important Notes
-- Ensure that all images have the same resolution before loading them for model training or inference.
+## `fluxes/<flux set>/`
 
+Focal spots `X_r` simulated with a raytracer using deflectometry measurements of the heliostat
+surfaces. Every image is normalised to a maximum of 1 and stored as a 16-bit PNG with
+10-bit precision (1023 levels; quantisation error of the flux below 0.15 % in terms of Eq. 14).
+The focal spot size depends on the physical size of the target, so there is one set per target
+geometry:
 
-## Example Usage
+| Flux set | Images | Used for |
+|---|---|---|
+| `solar_tower_juelich` | 1000 | `solar_tower_juelich_upper`, `solar_tower_juelich_lower` (same size, mounted above each other) |
+| `multi_focus_tower` | 1000 | `multi_focus_tower` |
 
-- **Training:** 
-  - `python train-model` (uses generated data from `emptyTargetImages/` and `fluxImages/` for training)
-  
-- **Inference:**
-  - `python run-inference` (runs inference on images in `realSamples/`)
+## `real_samples/<target>/`
 
-This directory is crucial for the data-driven aspects of the UNet model in the UTIS-HeliostatBeamCharacterization project. Ensure that all data is correctly prepared and organized before running the model.
+Real target images with focal spots (`solar_tower_juelich_lower`, 9 images), used to monitor the
+model during training (TensorBoard) and in the examples.
+
+## Adding a target
+
+1. Put images of the empty target into `empty_targets/<name>/` and, if the target size differs from
+   the existing ones, raytraced focal spots into `fluxes/<flux set>/`.
+2. Register the target in [`src/utis/targets.py`](../src/utis/targets.py) (flux set, displacement of
+   the focal spots, area) or set `flux_set` and `shift_std` directly in the training config.

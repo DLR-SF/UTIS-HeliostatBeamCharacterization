@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it using the following metadata."
+message: "If you use this software, please cite the paper below."
 title: "UTIS-HeliostatBeamCharacterization"
 authors:
   - family-names: "Kuhl"
@@ -8,15 +8,37 @@ authors:
   - family-names: "Pargmann"
     given-names: "Max"
     affiliation: "German Aerospace Center (DLR)"
-date-released: 2024-09-09
-version: 1.0.0
+date-released: 2026-11-03
+version: 2.0.0
 doi: 10.1016/j.solener.2024.112811
-url: "https://github.com/username/UTIS-HeliostatBeamCharacterization"
-repository-code: "https://github.com/username/UTIS-HeliostatBeamCharacterization"
+url: "https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization"
+repository-code: "https://github.com/DLR-SF/UTIS-HeliostatBeamCharacterization"
 keywords:
   - UNet
   - Image Segmentation
   - Solar Tower Plants
-  - Flux Prediction
-  - Artificial Data Generation
+  - Flux Measurement
+  - Camera-Target Method
+  - Heliostat Calibration
 license: "MIT"
+preferred-citation:
+  type: article
+  title: "In-situ UNet-based heliostat beam characterization method for precise flux calculation using the camera-target method"
+  authors:
+    - family-names: "Kuhl"
+      given-names: "Mathias"
+    - family-names: "Pargmann"
+      given-names: "Max"
+    - family-names: "Cherti"
+      given-names: "Mehdi"
+    - family-names: "Jitsev"
+      given-names: "Jenia"
+    - family-names: "Maldonado Quinto"
+      given-names: "Daniel"
+    - family-names: "Pitz-Paal"
+      given-names: "Robert"
+  journal: "Solar Energy"
+  volume: 279
+  start: 112811
+  year: 2024
+  doi: 10.1016/j.solener.2024.112811

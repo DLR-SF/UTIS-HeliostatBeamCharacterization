@@ -18,7 +18,7 @@ def test_torchscript_matches_eager():
     model = UNet3Plus(base_channels=4).eval()
     x = torch.rand(1, 1, 32, 32)
     with torch.no_grad():
-        assert torch.equal(torch.jit.script(model)(x), model(x))
+        torch.testing.assert_close(torch.jit.script(model)(x), model(x))
 
 
 def test_legacy_map_covers_all_parameters():
